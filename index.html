@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>App de Notas</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <section>
+          <article>
+            <h1>My Notes App</h1>
+            <form action="" method="POST">
+              <input type="text" name="note-title" placeholder="Note title" />
+              <br />
+              <textarea
+                name="note-details"
+                cols="30"
+                rows="10"
+                placeholder="Note details"
+              ></textarea>
+              <br />
+              <input type="submit" value="Add Note" />
+            </form>
+          </article>
+        </section>
+
+        <section>
+          <article>
+            <h2>Your Notes</h2>
+            <hr />
+            <div class="note">
+              <p>Note 1</p>
+              <h2>Hello world</h2>
+              <p>My first note</p>
+              <button class="delete-note">Delete Note</button>
+              <button class="edit-note">Edit note</button>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
