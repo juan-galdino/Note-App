@@ -16,22 +16,28 @@
           <article>
             <h1>My Notes App</h1>
 
-            <form action="" method="POST">
-              <input type="text" name="note-title" placeholder="Note title" />
+            <form class="form" action="" method="POST">
+              <input
+                class="note-title"
+                type="text"
+                name="note-title"
+                placeholder="Note title"
+              />
               <br />
               <textarea
-                name="note-details"
+                class="note-text"
+                name="note-text"
                 rows="10"
                 placeholder="Note Details"
               ></textarea>
               <br />
-              <input type="submit" value="Add Note" />
+              <input class="addNoteBtn" type="submit" value="Add Note" />
             </form>
           </article>
         </section>
 
         <section>
-          <article>
+          <article class="yourNotes">
             <h2>Your Notes</h2>
             <hr />
             <div class="note">

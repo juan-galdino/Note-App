@@ -23,14 +23,14 @@ body {
   background-color: var(--bg-color);
 }
 
+article {
+  max-width: 500px;
+}
+
 h1 {
   margin-bottom: 10px;
   font-size: 2em;
   color: var(--primary-color);
-}
-
-form {
-  max-width: 500px;
 }
 
 input {
