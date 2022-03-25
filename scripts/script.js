@@ -17,25 +17,28 @@ function addNote() {
   let noteCount = document.createElement('p')
   let noteTitle = document.createElement('h2')
   let noteText = document.createElement('p')
+  let deleteNoteBtn = document.createElement('button')
+  let editNoteBtn = document.createElement('button')
 
   noteCount.textContent = 'Note'
   noteTitle.textContent = input.value
   noteText.textContent = textarea.value
+  deleteNoteBtn.textContent = 'Delete Note'
+  editNoteBtn.textContent = 'Edit Note'
+
+  div.classList.add('note')
+  deleteNoteBtn.classList.add('delete-note')
+  editNoteBtn.classList.add('edit-note')
 
   div.appendChild(noteCount)
   div.appendChild(noteTitle)
   div.appendChild(noteText)
-  div.classList.add('note')
+  div.appendChild(deleteNoteBtn)
+  div.appendChild(editNoteBtn)
 
-  // Need to add the last buttons
-
+  yourNotes.appendChild(div)
   console.log(div)
-  // yourNotes.innerHTML = `
-  // <div class="note">
-  //   <p>Note</p>
-  //   <h2>${noteTitle}</h2>
-  //   <p>${noteDetails}></p>
-  //   <button class="button delete-note">Delete Note</button>
-  //   <button class="button edit-note">Edit note</button>
-  // </div>`
 }
+
+// delete note
+// edit note
