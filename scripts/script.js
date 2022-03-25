@@ -42,3 +42,4 @@ function addNote() {
 
 // delete note
 // edit note
+// created date for each note. Last modified. local storage.
