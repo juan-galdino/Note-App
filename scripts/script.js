@@ -40,7 +40,7 @@ function addNote() {
   console.log(div)
 
   deleteNoteBtn.addEventListener('click', deleteNote)
-  editNoteBtn.addEventListener('click', editNote)
+  // editNoteBtn.addEventListener('click', editNote)
 }
 
 function deleteNote(e) {
