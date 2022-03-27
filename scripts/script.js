@@ -38,8 +38,16 @@ function addNote() {
 
   yourNotes.appendChild(div)
   console.log(div)
+
+  deleteNoteBtn.addEventListener('click', deleteNote)
+  editNoteBtn.addEventListener('click', editNote)
 }
 
-// delete note
-// edit note
-// created date for each note. Last modified. local storage.
+function deleteNote(e) {
+  let parent = e.target.parentNode
+  parent.style.display = 'none'
+}
+
+// [x] delete note
+// [] edit note
+// in the future: note counter, created date. Last modified. local storage. Modal to delete note. Modal to edit note.
