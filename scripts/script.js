@@ -40,7 +40,7 @@ function addNote() {
   console.log(div)
 
   deleteNoteBtn.addEventListener('click', deleteNote)
-  // editNoteBtn.addEventListener('click', editNote)
+  editNoteBtn.addEventListener('click', editNote)
 }
 
 function deleteNote(e) {
@@ -48,6 +48,10 @@ function deleteNote(e) {
   parent.style.display = 'none'
 }
 
+function editNote(e) {
+  console.log(e)
+}
+
 // [x] delete note
-// [] edit note
+// [] edit note: need to work on the event triggered when it is clicked
 // in the future: note counter, created date. Last modified. local storage. Modal to delete note. Modal to edit note.
