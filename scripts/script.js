@@ -44,8 +44,9 @@ function addNote() {
 }
 
 function deleteNote(e) {
-  let parent = e.target.parentNode
-  parent.style.display = 'none'
+  let noteToRemove = e.target.parentNode
+  yourNotes.removeChild(noteToRemove)
+  console.log('success on remove the note')
 }
 
 function editNote(e) {
