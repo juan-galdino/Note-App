@@ -1,8 +1,8 @@
 const form = document.querySelector('.form')
 const yourNotes = document.querySelector('.yourNotes')
 
-form.addEventListener('submit', e => {
-  e.preventDefault()
+form.addEventListener('submit', event => {
+  event.preventDefault()
 
   addNote()
 })
@@ -43,14 +43,34 @@ function addNote() {
   editNoteBtn.addEventListener('click', editNote)
 }
 
-function deleteNote(e) {
-  let noteToRemove = e.target.parentNode
+function deleteNote(event) {
+  let noteToRemove = event.target.parentNode
   yourNotes.removeChild(noteToRemove)
   console.log('success on remove the note')
 }
 
-function editNote(e) {
-  console.log(e)
+function editNote(event) {
+  let noteToEdit = event.target.parentNode
+  let nodes = [noteToEdit.childNodes]
+  console.log(nodes)
+  noteToEdit.innerHTML = `<p>Editing Note</p>
+    <form class="form" action="" method="POST">
+    <input
+      class="note-title"
+      type="text"
+      name="note-title"
+      placeholder="Type your new title"
+    />
+    <br />
+    <textarea
+      class="note-text"
+      name="note-text"
+      rows="10"
+      placeholder="Change your text note"
+    ></textarea>
+    <br />
+    <input type="submit" value="Save Changes" />
+  </form>`
 }
 
 // [x] delete note
