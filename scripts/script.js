@@ -51,28 +51,33 @@ function deleteNote(event) {
 
 function editNote(event) {
   let noteToEdit = event.target.parentNode
-  let nodes = [noteToEdit.childNodes]
-  console.log(nodes)
-  noteToEdit.innerHTML = `<p>Editing Note</p>
-    <form class="form" action="" method="POST">
+
+  noteToEdit.innerHTML = `<p>Editing Note</p><br />
+  <form class="form" action="" method="POST">
     <input
-      class="note-title"
+      class="note-title wd"
       type="text"
       name="note-title"
       placeholder="Type your new title"
     />
     <br />
     <textarea
-      class="note-text"
+      class="note-text wd"
       name="note-text"
       rows="10"
       placeholder="Change your text note"
     ></textarea>
     <br />
-    <input type="submit" value="Save Changes" />
+    <button class="cancel-edit">Cancel</button>
+    <input class="edit-note" type="submit" value="Save Changes" />
   </form>`
+
+  let editionForm = noteToEdit.childNodes[3]
+  editionForm.addEventListener('submit', event => {
+    event.preventDefault()
+  })
 }
 
 // [x] delete note
-// [] edit note: need to work on the event triggered when it is clicked
+// [] edit note: innerHTML is not working, so i'll try with modal
 // in the future: note counter, created date. Last modified. local storage. Modal to delete note. Modal to edit note.

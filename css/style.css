@@ -33,29 +33,38 @@ h1 {
   color: var(--primary-color);
 }
 
+form {
+  text-align: center;
+}
+
+.wd {
+  width: 100%;
+}
+
 input {
   padding: 5px;
   margin-bottom: 5px;
-  width: 100%;
 }
 
 textarea {
   padding: 5px;
-  width: 100%;
   resize: none;
 }
 
 input[type='submit'] {
   border: none;
-  font-size: 20px;
+  font-size: 1.5em;
   transition: 0.2s;
-  background-color: var(--secondary-color);
   color: #fff;
 }
 
 input[type='submit']:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.add-note {
+  background-color: var(--secondary-color);
 }
 
 .yourNotes {
@@ -83,10 +92,22 @@ button:hover {
 }
 
 .delete-note {
+  margin-right: 5px;
   background-color: var(--secondary-color);
 }
 
 .edit-note {
-  margin-left: 5px;
   background-color: var(--primary-color);
+}
+
+.cancel-edit {
+  border: 1px solid rgb(165, 154, 154);
+  font-size: 1.5em;
+  color: rgb(165, 154, 154);
+  background-color: white;
+}
+
+.cancel-edit:hover {
+  border: 1px solid black;
+  color: black;
 }
