@@ -5,6 +5,7 @@ form.addEventListener('submit', event => {
   event.preventDefault()
 
   addNote()
+  form.reset()
 })
 
 // create and add new HTML elements on document.
@@ -27,8 +28,8 @@ function addNote() {
   editNoteBtn.textContent = 'Edit Note'
 
   div.classList.add('note')
-  deleteNoteBtn.classList.add('delete-note')
-  editNoteBtn.classList.add('edit-note')
+  deleteNoteBtn.classList.add('delete-note-btn')
+  editNoteBtn.classList.add('edit-note-btn')
 
   div.appendChild(noteCount)
   div.appendChild(noteTitle)
@@ -37,47 +38,43 @@ function addNote() {
   div.appendChild(editNoteBtn)
 
   yourNotes.appendChild(div)
-  console.log(div)
 
   deleteNoteBtn.addEventListener('click', deleteNote)
   editNoteBtn.addEventListener('click', editNote)
 }
 
 function deleteNote(event) {
-  let noteToRemove = event.target.parentNode
+  let noteToRemove = event.target.parentElement
   yourNotes.removeChild(noteToRemove)
   console.log('success on remove the note')
 }
 
 function editNote(event) {
-  let noteToEdit = event.target.parentNode
+  const modal = document.querySelector('.modal')
+  modal.style.display = 'block'
 
-  noteToEdit.innerHTML = `<p>Editing Note</p><br />
-  <form class="form" action="" method="POST">
-    <input
-      class="note-title wd"
-      type="text"
-      name="note-title"
-      placeholder="Type your new title"
-    />
-    <br />
-    <textarea
-      class="note-text wd"
-      name="note-text"
-      rows="10"
-      placeholder="Change your text note"
-    ></textarea>
-    <br />
-    <button class="cancel-edit">Cancel</button>
-    <input class="edit-note" type="submit" value="Save Changes" />
-  </form>`
+  const closeBtn = document.querySelector('.close-btn')
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none'
+  })
 
-  let editionForm = noteToEdit.childNodes[3]
-  editionForm.addEventListener('submit', event => {
+  const noteToEdit = event.target.parentElement
+
+  let titleValue = noteToEdit.children[1]
+  let textValue = noteToEdit.children[2]
+
+  const editForm = modal.firstElementChild.lastElementChild
+  editForm[0].value = titleValue.textContent
+  editForm[1].value = textValue.textContent
+
+  editForm.addEventListener('submit', event => {
     event.preventDefault()
+
+    console.log(titleValue, editForm[0].value)
+    modal.style.display = 'none'
   })
 }
 
 // [x] delete note
-// [] edit note: innerHTML is not working, so i'll try with modal
+// [] edit note: innerHTML is not working, so i'll try with this modal. Modal is with a bug, maybe if I create a New modal when editButton is triggered, perhaps I can solve this bug removing the modal when it is finished.
 // in the future: note counter, created date. Last modified. local storage. Modal to delete note. Modal to edit note.

@@ -8,6 +8,7 @@
   --primary-color: #9a1a88;
   --secondary-color: #dd670d;
   --bg-color: #efefef;
+  --light-gray: #A59A9A;
 }
 
 body {
@@ -72,6 +73,7 @@ input[type='submit']:hover {
 }
 
 .note {
+  overflow-wrap: break-word;
   margin-top: 10px;
   padding: 20px;
   background-color: #fff;
@@ -91,23 +93,59 @@ button:hover {
   opacity: 0.8;
 }
 
-.delete-note {
+.delete-note-btn {
   margin-right: 5px;
   background-color: var(--secondary-color);
 }
 
-.edit-note {
+.edit-note-btn {
+  background-color: var(--primary-color)
+}
+
+
+input[type="submit"].save-change-note {
+  font-size: 1em;
   background-color: var(--primary-color);
 }
 
-.cancel-edit {
-  border: 1px solid rgb(165, 154, 154);
-  font-size: 1.5em;
-  color: rgb(165, 154, 154);
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  padding: 30px;
+  margin: auto;
+  max-width: 500px;
+  background-color: #fefefe;
+}
+
+.close-btn {
+  float: right;
+  font-weight: bold;
+  font-size: 28px;
+  color: var(--light-gray);
+}
+
+.close-btn:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.cancel-edit-btn {
+  border: 1px solid var(--light-gray);
+  color: var(--light-gray);
   background-color: white;
 }
 
-.cancel-edit:hover {
+.cancel-edit-btn:hover {
   border: 1px solid black;
   color: black;
 }
