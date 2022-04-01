@@ -1,5 +1,10 @@
 const form = document.querySelector('.form')
+const input = document.querySelector('.note-title')
+const textarea = document.querySelector('.note-text')
 const yourNotes = document.querySelector('.yourNotes')
+const modal = document.querySelector('.modal')
+const allNotes = []
+let id = 0
 
 form.addEventListener('submit', event => {
   event.preventDefault()
@@ -8,39 +13,18 @@ form.addEventListener('submit', event => {
   form.reset()
 })
 
-// create and add new HTML elements on document.
-
 function addNote() {
-  let input = document.querySelector('.note-title')
-  let textarea = document.querySelector('.note-text')
+  yourNotes.innerHTML += `
+  <div class="note">
+    <p>Note</p>
+    <h2>${input.value}</h2>
+    <p>${textarea.value}</p>
+    <button class="button delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
+    <button class="button edit-note-btn" onclick="editNote(this)" >Edit note</button>
+  </div>  
+  `
 
-  let div = document.createElement('div')
-  let noteCount = document.createElement('p')
-  let noteTitle = document.createElement('h2')
-  let noteText = document.createElement('p')
-  let deleteNoteBtn = document.createElement('button')
-  let editNoteBtn = document.createElement('button')
-
-  noteCount.textContent = 'Note'
-  noteTitle.textContent = input.value
-  noteText.textContent = textarea.value
-  deleteNoteBtn.textContent = 'Delete Note'
-  editNoteBtn.textContent = 'Edit Note'
-
-  div.classList.add('note')
-  deleteNoteBtn.classList.add('delete-note-btn')
-  editNoteBtn.classList.add('edit-note-btn')
-
-  div.appendChild(noteCount)
-  div.appendChild(noteTitle)
-  div.appendChild(noteText)
-  div.appendChild(deleteNoteBtn)
-  div.appendChild(editNoteBtn)
-
-  yourNotes.appendChild(div)
-
-  deleteNoteBtn.addEventListener('click', deleteNote)
-  editNoteBtn.addEventListener('click', editNote)
+  input.focus()
 }
 
 function deleteNote(event) {
@@ -50,31 +34,40 @@ function deleteNote(event) {
 }
 
 function editNote(event) {
-  const modal = document.querySelector('.modal')
   modal.style.display = 'block'
 
-  const closeBtn = document.querySelector('.close-btn')
+  let closeBtn = document.querySelector('.close-btn')
   closeBtn.addEventListener('click', () => {
     modal.style.display = 'none'
   })
 
-  const noteToEdit = event.target.parentElement
+  let noteToEdit = event.target.parentElement
+  console.log(allNotes.find(noteToEdit === note.id.value))
 
-  let titleValue = noteToEdit.children[1]
-  let textValue = noteToEdit.children[2]
+  let editForm = modal.firstElementChild.lastElementChild
 
-  const editForm = modal.firstElementChild.lastElementChild
-  editForm[0].value = titleValue.textContent
-  editForm[1].value = textValue.textContent
+  // console.log(noteToEdit.children[1].textContent)
 
-  editForm.addEventListener('submit', event => {
-    event.preventDefault()
+  // let titleValue = noteToEdit.childNodes[1]
+  // // let textValue = noteToEdit.childNodes[2]
 
-    console.log(titleValue, editForm[0].value)
-    modal.style.display = 'none'
-  })
+  // editForm[0].value = titleValue.textContent
+
+  // editForm[0].addEventListener('change', event => {
+  //   titleValue.textContent = event.target.value
+
+  //   console.log(event.target.value)
+  // })
+
+  // editForm.addEventListener('submit', event => {
+  //   event.preventDefault()
+  //   // editForm.reset()
+
+  //   modal.style.display = 'none'
+  // })
 }
 
-// [x] delete note
+// [x] add note. A simple += after innerHTML code made this function easier to read and manipulate.
+// [] delete note
 // [] edit note: innerHTML is not working, so i'll try with this modal. Modal is with a bug, maybe if I create a New modal when editButton is triggered, perhaps I can solve this bug removing the modal when it is finished.
 // in the future: note counter, created date. Last modified. local storage. Modal to delete note. Modal to edit note.
