@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="./css/style.css" />
 
-    <title>App de Notas</title>
+    <title>Notes App</title>
   </head>
   <body>
     <main>
@@ -16,9 +16,10 @@
           <article>
             <header><h1>My Notes App</h1></header>
 
-            <form class="form" action="" method="POST">
+            <form class="form" id="form" action="" method="POST">
               <input
                 class="note-title wd"
+                id="title"
                 type="text"
                 name="note-title"
                 placeholder="Note title"
@@ -26,6 +27,7 @@
               <br />
               <textarea
                 class="note-text wd"
+                id="text"
                 name="note-text"
                 rows="10"
                 placeholder="Note your text here..."
@@ -37,7 +39,7 @@
         </section>
 
         <section>
-          <article class="yourNotes">
+          <article class="your-notes">
             <header>
               <h2>Your Notes</h2>
               <hr />
@@ -55,9 +57,10 @@
                 <span class="close-btn">&times;</span>
                 <h2>Editing Note</h2>
                 <br />
-                <form class="form" action="" method="POST">
+                <form class="form edition-form" action="" method="POST">
                   <input
                     class="note-title wd"
+                    id="edit-input"
                     type="text"
                     name="note-title"
                     placeholder="Type your new title here"
@@ -65,6 +68,7 @@
                   <br />
                   <textarea
                     class="note-text wd"
+                    id="edit-textarea"
                     name="note-text"
                     rows="10"
                     placeholder="Note your text here..."

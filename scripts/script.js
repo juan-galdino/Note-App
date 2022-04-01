@@ -1,70 +1,70 @@
-const form = document.querySelector('.form')
-const input = document.querySelector('.note-title')
-const textarea = document.querySelector('.note-text')
-const yourNotes = document.querySelector('.yourNotes')
-const modal = document.querySelector('.modal')
+const form = document.querySelector('#form')
+const input = document.querySelector('#title')
+const textarea = document.querySelector('#text')
+const yourNotes = document.querySelector('.your-notes')
+
 const allNotes = []
-let id = 0
 
 form.addEventListener('submit', event => {
   event.preventDefault()
 
   addNote()
-  form.reset()
 })
 
 function addNote() {
   yourNotes.innerHTML += `
   <div class="note">
-    <p>Note</p>
-    <h2>${input.value}</h2>
-    <p>${textarea.value}</p>
-    <button class="button delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
-    <button class="button edit-note-btn" onclick="editNote(this)" >Edit note</button>
+  <p>Note</p>
+  <h2>${input.value}</h2>
+  <p>${textarea.value}</p>
+  <button class="delete-note-btn" onclick="deleteNote()" >Delete Note</button>
+  <button class="edit-note-btn" onclick="showModalEdit(this)">Edit note</button>
   </div>  
   `
+  let id = Date.now()
+  let note = {
+    id: id,
+    title: input.value,
+    text: textarea.value
+  }
+
+  allNotes.push(note)
 
   input.focus()
+  form.reset()
+  // console.log(allNotes)
 }
 
 function deleteNote(event) {
-  let noteToRemove = event.target.parentElement
+  let noteToRemove = event.parentElement
   yourNotes.removeChild(noteToRemove)
   console.log('success on remove the note')
 }
 
-function editNote(event) {
-  modal.style.display = 'block'
+function showModalEdit(element) {
+  const modalToEdit = document.querySelector('.modal')
+  const editionForm = document.querySelector('.edition-form')
+  const editInput = document.querySelector('#edit-input')
+  const editTextarea = document.querySelector('#edit-textarea')
 
-  let closeBtn = document.querySelector('.close-btn')
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none'
+  modalToEdit.style.display = 'block'
+
+  editionForm.addEventListener('submit', event => {
+    event.preventDefault()
+
+    element.parentElement.innerHTML = `
+    
+    <p>Note</p>
+    <h2>${editInput.value}</h2>
+    <p>${editTextarea.value}</p>
+    <button class="delete-note-btn" onclick="deleteNote()" >Delete Note</button>
+    <button class="edit-note-btn" onclick="showModalEdit(this)">Edit note</button>  
+  `
+
+    modalToEdit.style.display = 'none'
+
+    editionForm.reset()
   })
-
-  let noteToEdit = event.target.parentElement
-  console.log(allNotes.find(noteToEdit === note.id.value))
-
-  let editForm = modal.firstElementChild.lastElementChild
-
-  // console.log(noteToEdit.children[1].textContent)
-
-  // let titleValue = noteToEdit.childNodes[1]
-  // // let textValue = noteToEdit.childNodes[2]
-
-  // editForm[0].value = titleValue.textContent
-
-  // editForm[0].addEventListener('change', event => {
-  //   titleValue.textContent = event.target.value
-
-  //   console.log(event.target.value)
-  // })
-
-  // editForm.addEventListener('submit', event => {
-  //   event.preventDefault()
-  //   // editForm.reset()
-
-  //   modal.style.display = 'none'
-  // })
 }
 
 // [x] add note. A simple += after innerHTML code made this function easier to read and manipulate.
