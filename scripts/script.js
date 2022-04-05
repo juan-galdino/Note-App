@@ -5,6 +5,36 @@ const yourNotes = document.querySelector('.your-notes')
 
 let allNotes = []
 
+function loadData() {
+  console.log('loaded')
+  // localStorage.clear()
+
+  allNotes = JSON.parse(localStorage.getItem('userNotes'))
+
+  if (allNotes === null) {
+    console.log('nothing in the local storage')
+    allNotes = []
+  } else {
+    console.log(
+      'We do have ' + allNotes.length + ' note(s) in the local storage'
+    )
+    console.log(allNotes)
+
+    allNotes.forEach(note => {
+      yourNotes.innerHTML += `
+      <div class="note">
+        <p>Note</p>
+        <h2>${note.title}</h2>
+        <p>${note.text}</p>
+        <button class="delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
+        <button class="edit-note-btn" onclick="editNote(this)">Edit note</button>
+      </div>
+
+      `
+    })
+  }
+}
+
 form.addEventListener('submit', event => {
   event.preventDefault()
 
@@ -14,11 +44,11 @@ form.addEventListener('submit', event => {
 function addNote() {
   yourNotes.innerHTML += `
   <div class="note">
-  <p>Note</p>
-  <h2>${input.value}</h2>
-  <p>${textarea.value}</p>
-  <button class="delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
-  <button class="edit-note-btn" onclick="showModalEdit(this)">Edit note</button>
+    <p>Note</p>
+    <h2>${input.value}</h2>
+    <p>${textarea.value}</p>
+    <button class="delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
+    <button class="edit-note-btn" onclick="editNote(this)">Edit note</button>
   </div>  
   `
 
@@ -32,7 +62,6 @@ function addNote() {
   localStorage.setItem('userNotes', JSON.stringify(allNotes))
 
   input.focus()
-
   form.reset()
 }
 
@@ -40,7 +69,7 @@ function deleteNote(element) {
   yourNotes.removeChild(element.parentElement)
 }
 
-function showModalEdit(element) {
+function editNote(element) {
   const modalToEdit = document.querySelector('.modal')
   const editionForm = document.querySelector('.edition-form')
   const editInput = document.querySelector('#edit-input')
@@ -57,32 +86,13 @@ function showModalEdit(element) {
     <h2>${editInput.value}</h2>
     <p>${editTextarea.value}</p>
     <button class="delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
-    <button class="edit-note-btn" onclick="showModalEdit(this)">Edit note</button>  
+    <button class="edit-note-btn" onclick="editNote(this)">Edit note</button>  
   `
 
     editionForm.reset()
 
     modalToEdit.style.display = 'none'
   })
-}
-
-function loadData() {
-  console.log('loaded')
-
-  allNotes = JSON.parse(localStorage.getItem('userNotes'))
-
-  if (allNotes === null) {
-    console.log('nothing in the local storage')
-  } else {
-    console.log(
-      'We do have ' + allNotes.length + ' note(s) in the local storage'
-    )
-    console.log(allNotes)
-
-    allNotes.forEach(element => {
-      yourNotes.innerHTML += `<div class="note">Hi</div>`
-    })
-  }
 }
 
 // [x] add note. A simple += after innerHTML code made this function easier to read and manipulate.
