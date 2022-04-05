@@ -3,7 +3,7 @@ const input = document.querySelector('#title')
 const textarea = document.querySelector('#text')
 const yourNotes = document.querySelector('.your-notes')
 
-const allNotes = []
+let allNotes = []
 
 form.addEventListener('submit', event => {
   event.preventDefault()
@@ -21,18 +21,19 @@ function addNote() {
   <button class="edit-note-btn" onclick="showModalEdit(this)">Edit note</button>
   </div>  
   `
-  let id = Date.now()
+
   let note = {
-    id: id,
     title: input.value,
     text: textarea.value
   }
 
   allNotes.push(note)
 
+  localStorage.setItem('userNotes', JSON.stringify(allNotes))
+
   input.focus()
+
   form.reset()
-  // console.log(allNotes)
 }
 
 function deleteNote(element) {
@@ -63,6 +64,25 @@ function showModalEdit(element) {
 
     modalToEdit.style.display = 'none'
   })
+}
+
+function loadData() {
+  console.log('loaded')
+
+  allNotes = JSON.parse(localStorage.getItem('userNotes'))
+
+  if (allNotes === null) {
+    console.log('nothing in the local storage')
+  } else {
+    console.log(
+      'We do have ' + allNotes.length + ' note(s) in the local storage'
+    )
+    console.log(allNotes)
+
+    allNotes.forEach(element => {
+      yourNotes.innerHTML += `<div class="note">Hi</div>`
+    })
+  }
 }
 
 // [x] add note. A simple += after innerHTML code made this function easier to read and manipulate.
