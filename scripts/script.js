@@ -23,7 +23,7 @@ function loadData() {
     allNotes.forEach(note => {
       yourNotes.innerHTML += `
       <div class="note">
-        <p>Note <span>${note.id}</span></p>
+        <p>Note <span class="hide">${note.id}</span></p>
         <h2>${note.title}</h2>
         <p>${note.text}</p>
         <button class="delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
@@ -45,7 +45,7 @@ function addNote() {
 
   yourNotes.innerHTML += `
   <div class="note">
-    <p>Note <span>${id}</span></p>
+    <p>Note <span class="hide">${id}</span></p>
     <h2>${input.value}</h2>
     <p>${textarea.value}</p>
     <button class="delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
@@ -65,6 +65,8 @@ function addNote() {
 
   input.focus()
   form.reset()
+
+  console.log('note added and stored with success')
 }
 
 function deleteNote(element) {
@@ -86,22 +88,29 @@ function editNote(element) {
   editInput.value = p.textContent
   editTextarea.value = h2.textContent
 
-  console.log(idNote)
-
   let index = allNotes.map(object => object.id).indexOf(idNote)
-
-  console.log(index)
 
   editionForm.addEventListener('submit', event => {
     event.preventDefault()
 
     element.parentElement.innerHTML = `
-    <p>Note</p>
+    <p>Note <span class="hide">${idNote}</span></p>
     <h2>${editInput.value}</h2>
     <p>${editTextarea.value}</p>
     <button class="delete-note-btn" onclick="deleteNote(this)" >Delete Note</button>
     <button class="edit-note-btn" onclick="editNote(this)">Edit note</button>  
   `
+
+    allNotes.splice(index, 1, {
+      id: idNote,
+      title: editInput.value,
+      text: editTextarea.value
+    })
+
+    localStorage.setItem('userNotes', JSON.stringify(allNotes))
+
+    console.log('note modified and stored with success')
+    console.log(allNotes)
 
     editionForm.reset()
 
@@ -109,7 +118,8 @@ function editNote(element) {
   })
 }
 
-// [x] add note. A simple += after innerHTML code made this function easier to read and manipulate.
-// [] delete note
-// [] edit note: Modal was created and can manipulate the Html elements. Found by id the index of each object created from allNotes array.
+// [x] add note: A simple += after innerHTML code made this function easier to read and manipulate.
+// [x] edit note: Modal was created and can manipulate the Html elements. Found by id the index of each object created from allNotes array.
+// [] cancel operation function:
+// [] delete note:
 // in the future: note counter, created date. Last modified. local storage. Modal to delete note. Modal to edit note.

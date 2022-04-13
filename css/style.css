@@ -124,10 +124,9 @@ input[type="submit"].save-change-note {
   display: block;
 }
 
-/* 
 .hide {
   display: none;
-} */
+}
 
 .modal-content {
   padding: 30px;
