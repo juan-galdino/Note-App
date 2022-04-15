@@ -75,11 +75,22 @@ function deleteNote(element) {
 
 function editNote(element) {
   const modalToEdit = document.querySelector('.modal')
+  const closeBtn = document.querySelector('.close-btn')
   const editionForm = document.querySelector('.edition-form')
   const editInput = document.querySelector('#edit-input')
   const editTextarea = document.querySelector('#edit-textarea')
 
   modalToEdit.style.display = 'block'
+
+  closeBtn.addEventListener('click', () => {
+    modalToEdit.style.display = 'none'
+  })
+
+  onclick = function (event) {
+    if (event.target == modalToEdit) {
+      modalToEdit.style.display = 'none'
+    }
+  }
 
   let idNote = parseInt(element.parentElement.children[0].lastChild.textContent)
   let p = element.parentElement.children[1]
@@ -120,6 +131,6 @@ function editNote(element) {
 
 // [x] add note: A simple += after innerHTML code made this function easier to read and manipulate.
 // [x] edit note: Modal was created and can manipulate the Html elements. Found by id the index of each object created from allNotes array.
-// [] cancel operation function:
+// [x] cancel operation
 // [] delete note:
-// in the future: note counter, created date. Last modified. local storage. Modal to delete note. Modal to edit note.
+// in the future: note counter, created date. Last modified. local storage. Modal to delete note. Icons instead of words.

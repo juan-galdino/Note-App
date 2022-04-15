@@ -147,13 +147,3 @@ input[type="submit"].save-change-note {
   cursor: pointer;
 }
 
-.cancel-edit-btn {
-  border: 1px solid var(--light-gray);
-  color: var(--light-gray);
-  background-color: white;
-}
-
-.cancel-edit-btn:hover {
-  border: 1px solid black;
-  color: black;
-}
